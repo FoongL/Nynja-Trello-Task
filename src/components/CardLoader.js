@@ -115,62 +115,66 @@ export default class cardLoader extends Component {
       due: document.getElementById('due').value,
       idLabels: this.state.labelList,
     };
-    if (data.name.includes('DEV')) {
-      if (data.idLabels.includes('5eb79eef7669b225494bc374') === false) {
-        this.setState({
-          changes: 'Dev tag was added to card.',
-        });
-        data.idLabels.push('5eb79eef7669b225494bc374');
-      }
-    } else if (data.name.includes('QA')) {
-      let date = new Date();
-      date.setDate(date.getDate() + 1).toString();
-      if (date.due !== date) {
-        data.due = date;
-        this.setState({
-          changes: 'Due date changed to tomorrow.',
-        });
-      }
+    if (idList === '') {
+      alert('Please remember to select a list to post to');
     } else {
-      if (data.idLabels.includes('5eb79eef7669b225494bc378') === false) {
-        this.setState({
-          changes: 'General tag was added to card.',
-        });
-        data.idLabels.push('5eb79eef7669b225494bc378');
+      if (data.name.includes('DEV')) {
+        if (data.idLabels.includes('5eb79eef7669b225494bc374') === false) {
+          this.setState({
+            changes: 'Dev tag was added to card.',
+          });
+          data.idLabels.push('5eb79eef7669b225494bc374');
+        }
+      } else if (data.name.includes('QA')) {
+        let date = new Date();
+        date.setDate(date.getDate() + 1).toString();
+        if (date.due !== date) {
+          data.due = date;
+          this.setState({
+            changes: 'Due date changed to tomorrow.',
+          });
+        }
+      } else {
+        if (data.idLabels.includes('5eb79eef7669b225494bc378') === false) {
+          this.setState({
+            changes: 'General tag was added to card.',
+          });
+          data.idLabels.push('5eb79eef7669b225494bc378');
+        }
       }
-    }
 
-    axios
-      .post(
-        `https://api.trello.com/1/cards?idList=${idList}&key=${process.env.REACT_APP_API_KEY}&token=${process.env.REACT_APP_API_TOKEN}`,
-        data
-      )
-      .then(() => {
-        this.setState({
-          lists: [],
-          labels: [],
-          listToggle: false,
-          listName: 'Lists:',
-          listId: '',
-          labelToggle: false,
-          labelName: 'Select Label:',
-          labelList: [],
-          descriptionCount: 1000,
-          titleCount: 50,
-          toast: true,
+      axios
+        .post(
+          `https://api.trello.com/1/cards?idList=${idList}&key=${process.env.REACT_APP_API_KEY}&token=${process.env.REACT_APP_API_TOKEN}`,
+          data
+        )
+        .then(() => {
+          this.setState({
+            lists: [],
+            labels: [],
+            listToggle: false,
+            listName: 'Lists:',
+            listId: '',
+            labelToggle: false,
+            labelName: 'Select Label:',
+            labelList: [],
+            descriptionCount: 1000,
+            titleCount: 50,
+            toast: true,
+          });
+        })
+        .then(() => {
+          document.getElementById('cardName').value = '';
+          document.getElementById('cardDesc').value = '';
+          document.getElementById('due').value = '';
+          this.grabStates();
+        })
+        .catch((err) => {
+          alert(
+            'Error: Something went wrong when trying to load the Data, make sure required fields are filled'
+          );
         });
-      })
-      .then(() => {
-        document.getElementById('cardName').value = '';
-        document.getElementById('cardDesc').value = '';
-        document.getElementById('due').value = '';
-        this.grabStates();
-      })
-      .catch((err) => {
-        alert(
-          'Error: Something went wrong when trying to load the Data, make sure required fields are filled'
-        );
-      });
+    }
   };
 
   render() {
@@ -237,7 +241,9 @@ export default class cardLoader extends Component {
                 <h5>Select List:</h5>
               </div>
               <Dropdown isOpen={this.state.listToggle} toggle={this.toggleList}>
-                <DropdownToggle caret className="btn btn-info">{this.state.listName}</DropdownToggle>
+                <DropdownToggle caret className="btn btn-info">
+                  {this.state.listName}
+                </DropdownToggle>
                 <DropdownMenu>{showLists}</DropdownMenu>
               </Dropdown>
             </div>
@@ -275,33 +281,35 @@ export default class cardLoader extends Component {
             placeholder="Description..."
             onChange={this.descriptionCount}
           ></textarea>
-         <div style={{display:'flex', justifyContent:'space-between'}}>  
-         <div>
-          <div
-            style={{
-              width: '200px',
-              marginTop: '25px',
-            }}
-          >
-            <h5>Add Label:</h5>
-          </div>
-          <Dropdown
-            isOpen={this.state.labelToggle}
-            toggle={this.toggleLabel}
-            style={{ width: '50%' }}
-          >
-            <DropdownToggle caret className="btn btn-info">{this.state.labelName}</DropdownToggle>
-            <DropdownMenu>{showLabels}</DropdownMenu>
-          </Dropdown>
-          </div> 
-          <Button
-            color="success"
-            style={{alignSelf:'flex-end', marginRight:'45px'}}
-            onClick={this.submit}
-            className="btn-lg"
-          >
-            Submit Card
-          </Button>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div>
+              <div
+                style={{
+                  width: '200px',
+                  marginTop: '25px',
+                }}
+              >
+                <h5>Add Label:</h5>
+              </div>
+              <Dropdown
+                isOpen={this.state.labelToggle}
+                toggle={this.toggleLabel}
+                style={{ width: '50%' }}
+              >
+                <DropdownToggle caret className="btn btn-info">
+                  {this.state.labelName}
+                </DropdownToggle>
+                <DropdownMenu>{showLabels}</DropdownMenu>
+              </Dropdown>
+            </div>
+            <Button
+              color="success"
+              style={{ alignSelf: 'flex-end', marginRight: '45px' }}
+              onClick={this.submit}
+              className="btn-lg"
+            >
+              Submit Card
+            </Button>
           </div>
           <Toast
             isOpen={this.state.toast}

@@ -1,68 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Foong Leung's FortNynja Trello card posting assignment
 
-## Available Scripts
+Welcome to my final submission for the exercise.
+I hope you like my iteration of how the program should work!
 
-In the project directory, you can run:
+## Installation
 
-### `yarn start`
+When you first copy this repository onto your machine, just remember to open up the folder and run the following yarn install in order to ensure all modules are working.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+yarn install
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Hosting it on your local machine
 
-### `yarn test`
+From there it is rather simple, just run the following command for the program to be hosted on your local port 3000.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+yarn start
+```
 
-### `yarn build`
+### Visiting the online hosted
+This project has also been hosted on surge, just a simple and quick way to get a front end application up and running for free on the web, the link can be found [Here](https://clever-pickle.surge.sh/)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Notable Exclusion
+I only included what i thought would be the most "important" qualities for a card, however one was skipped: adding members. This was chosen due to the fact that the Trello API would only return one user per board, who was usually the created. I had tested this with other boards in which the same result would occur, and for that reason, giving the option to include Members in cards was excluded. If it were to be included, a dropdown menu would be added much like how list and label selection was done.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Parting thoughts
+I hope you enjoyed my version of the card loader, and would greatly appreciate any feedback you may have to further improve!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Thank you
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Foong
