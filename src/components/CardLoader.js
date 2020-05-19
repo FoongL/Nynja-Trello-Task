@@ -19,7 +19,7 @@ export default class cardLoader extends Component {
       lists: [],
       labels: [],
       listToggle: false,
-      listName: 'Lists:',
+      listName: 'To Do',
       listId: '',
       labelToggle: false,
       labelName: 'Select Label:',
@@ -57,7 +57,7 @@ export default class cardLoader extends Component {
         console.log('something went wrong');
       });
   };
-  toggleList = () => {
+  toggleList = (e) => {
     this.setState({
       listToggle: !this.state.listToggle,
     });
@@ -73,6 +73,9 @@ export default class cardLoader extends Component {
     });
   };
   chooseList = (e) => {
+    if(e.target.innerText !== 'To Do'){
+      alert('Beware, you are setting to post list not into "To Do".')
+    }
     this.setState({
       listName: e.target.innerText,
       listId: e.target.id,
@@ -153,8 +156,8 @@ export default class cardLoader extends Component {
             lists: [],
             labels: [],
             listToggle: false,
-            listName: 'Lists:',
-            listId: '',
+            listName: 'To Do',
+            listId: '5eb79eefecc831684564d6f8',
             labelToggle: false,
             labelName: 'Select Label:',
             labelList: [],

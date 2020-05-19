@@ -20,7 +20,7 @@ yarn start
 ```
 
 ### Visiting the online hosted
-This project has also been hosted on surge, just a simple and quick way to get a front end application up and running for free on the web, the link can be found [Here](https://clever-pickle.surge.sh/)
+This project has also been hosted on surge, just a simple and quick way to get a front end application up and running for free on the web, the link can be found [Here](https://fort-trello.surge.sh/)
 
 ## Notable Exclusion
 I only included what i thought would be the most "important" qualities for a card, however one was skipped: adding members. This was chosen due to the fact that the Trello API would only return one user per board, who was usually the created. I had tested this with other boards in which the same result would occur, and for that reason, giving the option to include Members in cards was excluded. If it were to be included, a dropdown menu would be added much like how list and label selection was done.
